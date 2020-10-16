@@ -1,17 +1,32 @@
 <template>
   <v-app id="app">
+    <template v-if="hasHeader">
+      <Header />
+    </template>
+
     <v-main id="concrete-content">
       <router-view></router-view>
     </v-main>
   </v-app>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script lang="ts">
+import Vue from 'vue';
+import Header from '@/components/Layout/Header.vue';
 
-export default {
+export default Vue.extend({
   name: 'App',
-}
+
+  data: () => ({ hasHeader: true }),
+
+  components: { Header },
+
+  watch: {
+    $route() {
+      this.hasHeader = this.$route.name !== 'Login';
+    },
+  },
+});
 </script>
 
 <style>

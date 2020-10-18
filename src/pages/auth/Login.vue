@@ -4,11 +4,11 @@
       <v-col cols="12" xs="12" sm="8" md="5">
         <v-card class="py-8 elevation-12">
           <v-row class="mb-6" justify="center">
-            <img src="@/assets/logo.png" width="40%">
+            <img src="@/assets/logo.png" width="20%">
           </v-row>
 
           <v-row justify="center">
-            <v-toolbar-title>Bem Vindo</v-toolbar-title>
+            <v-toolbar-title>Bem Vindo ao Concrete CC</v-toolbar-title>
           </v-row>
 
           <v-card-text>
@@ -34,6 +34,12 @@
               />
             </v-form>
 
+            <v-row>
+              <v-btn small text>
+                Esqueceu a senha?
+              </v-btn>
+            </v-row>
+
             <template v-if="errors.length">
               <div id="errors-messages">
                 <ul>
@@ -51,16 +57,22 @@
                 color="success"
                 @click="handleSubmit"
                 large
-                class="mb-5"
+                class="mb-5 text-decoration-none"
               >
                 Login
               </v-btn>
             </v-row>
 
             <v-row justify="center">
-              <v-btn text>
-                Esqueci a senha
-              </v-btn>
+              <div class="text-body-2">
+                Novo por aqui?
+                <router-link
+                  class="text-decoration-none"
+                  :to="{name: 'CreateUser'}"
+                >
+                  Crie uma conta
+                </router-link>
+              </div>
             </v-row>
           </div>
         </v-card>
@@ -74,6 +86,8 @@ import Vue from 'vue';
 import { mapActions } from 'vuex';
 
 export default Vue.extend({
+  name: '',
+
   data() {
     return {
       errors: Array<string>(),

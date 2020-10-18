@@ -23,7 +23,7 @@ export default Vue.extend({
 
   watch: {
     $route() {
-      this.hasHeader = this.$route.name !== 'Login';
+      this.hasHeader = !this.$route.meta.noHeader;
     },
   },
 });

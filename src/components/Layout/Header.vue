@@ -19,6 +19,7 @@ export default Vue.extend({
   methods: {
     logout() {
       localStorage.Authenticated = 'false';
+      localStorage.jwt = '';
       this.$router.push({ name: 'Login' });
     },
   },

@@ -12,6 +12,9 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: () => import('@/pages/auth/Login.vue'),
+    meta: {
+      noHeader: true,
+    },
   },
   {
     path: '/home',
@@ -19,6 +22,14 @@ const routes = [
     component: () => import('@/pages/Home.vue'),
     meta: {
       requiresAuth: true,
+    },
+  },
+  {
+    path: '/usuarios/novo',
+    name: 'CreateUser',
+    component: () => import('@/pages/users/Create.vue'),
+    meta: {
+      noHeader: true,
     },
   },
 ];

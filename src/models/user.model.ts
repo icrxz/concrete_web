@@ -56,6 +56,6 @@ export interface ApiResponse {
   __v: number;
 }
 
-export const validate = (user: User): boolean => {
+export const validate = (user: Front): boolean => {
   return user.password === user.passwordConfirmation;
 };

@@ -18,11 +18,11 @@ const actions = {
   async create({ commit }, data: User.Front) {
     try {
       const serialized = UserSerializer.serialize(data);
+
       const response = await api.post(`/users`, serialized);
 
       return response;
     } catch (error) {
-      console.log(error.response);
       throw error.response.data;
     }
   },

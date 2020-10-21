@@ -59,7 +59,7 @@
                 large
                 class="mb-5 text-decoration-none"
               >
-                Login
+                Entrar
               </v-btn>
             </v-row>
 

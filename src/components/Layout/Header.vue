@@ -1,6 +1,6 @@
 <template>
   <v-app-bar app clipped-left dark id="header">
-    <v-app-bar-nav-icon />
+    <v-app-bar-nav-icon @click.stop="handleSidebar"/>
     <v-toolbar-title>Concrete CC</v-toolbar-title>
 
     <v-spacer />
@@ -17,6 +17,10 @@ import Vue from 'vue';
 export default Vue.extend({
   name: 'Header',
   methods: {
+    handleSidebar() {
+      this.$emit('sidebarAction');
+    },
+
     logout() {
       localStorage.Authenticated = 'false';
       localStorage.jwt = '';

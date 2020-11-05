@@ -1,7 +1,8 @@
 <template>
   <v-app id="app">
     <template v-if="hasHeader">
-      <Header />
+      <Header v-on:sidebarAction="sidebarAction"/>
+      <Sidebar ref="sidebar"/>
     </template>
 
     <v-main id="concrete-content">
@@ -13,13 +14,20 @@
 <script lang="ts">
 import Vue from 'vue';
 import Header from '@/components/Layout/Header.vue';
+import Sidebar from '@/components/Layout/Sidebar.vue';
 
 export default Vue.extend({
   name: 'App',
 
   data: () => ({ hasHeader: true }),
 
-  components: { Header },
+  components: { Header, Sidebar },
+
+  methods: {
+    sidebarAction() {
+      (this.$refs.sidebar as Sidebar).handleSidebarSize();
+    },
+  },
 
   watch: {
     $route() {

@@ -40,7 +40,7 @@ export interface ApiResponse {
   name: string;
   isActive: boolean;
   organization: string;
-  description: Profiles;
+  description: string;
   manager: string;
   files: Array<string>;
   createdAt: string;

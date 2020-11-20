@@ -41,13 +41,9 @@
             </v-row>
 
             <template v-if="errors.length">
-              <div id="errors-messages">
-                <ul>
-                  <li v-for="(errors, field) in errors" :key="(errors, field)">
-                    {{ errors }}
-                  </li>
-                </ul>
-              </div>
+              <ErrorLabel 
+                :errors="errors"
+              />
             </template>
           </v-card-text>
 
@@ -84,9 +80,14 @@
 <script lang='ts'>
 import Vue from 'vue';
 import { mapActions } from 'vuex';
+import ErrorLabel from '@/components/atomics/Labels/ErrorLabel.vue';
 
 export default Vue.extend({
-  name: '',
+  name: 'Login',
+
+  components: {
+    ErrorLabel: ErrorLabel,
+  },
 
   data() {
     return {
@@ -153,10 +154,3 @@ export default Vue.extend({
   },
 });
 </script>
-
-<style scoped>
-#errors-messages li {
-  color: red;
-  font-size: 1.15em;
-}
-</style>

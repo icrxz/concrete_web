@@ -1,12 +1,14 @@
 <template>
-  <v-app-bar app clipped-left dark id="header">
+  <v-app-bar app clipped-left flat dark id="header">
     <v-app-bar-nav-icon @click.stop="handleSidebar"/>
-    <v-toolbar-title>Concrete CC</v-toolbar-title>
+    <v-toolbar-title>
+      <v-img src="@/assets/logo.png" width="5%" />
+    </v-toolbar-title>
 
     <v-spacer />
 
     <v-toolbar-items>
-      <v-btn text @click="logout">Logout</v-btn>
+      <v-btn text @click="logout" style="text-transform: none">Sair</v-btn>
     </v-toolbar-items>
   </v-app-bar>
 </template>

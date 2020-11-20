@@ -1,3 +1,4 @@
+import Dayjs from 'dayjs';
 import * as Project from '@/models/project.model';
 
 export const serialize = (_project: Project.Front) => {
@@ -23,8 +24,8 @@ export const deserialize = (resp: Project.ApiResponse) => {
     organization: resp.organization,
     files: resp.files,
     description: resp.description,
-    createdAt: resp.createdAt,
-    updatedAt: resp.updatedAt,
+    createdAt: Dayjs(resp.createdAt).format('DD/MM/YYYY'),
+    updatedAt: Dayjs(resp.updatedAt).format('DD/MM/YYYY'),
   };
 
   return project;

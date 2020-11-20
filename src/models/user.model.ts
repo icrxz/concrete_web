@@ -1,6 +1,6 @@
 export enum Profiles {
   Admin = 'admin',
-  Dev = 'dev',
+  Design = 'design',
   Reader = 'reader'
 }
 

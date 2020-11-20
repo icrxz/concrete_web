@@ -5,7 +5,7 @@
       <Sidebar ref="sidebar"/>
     </template>
 
-    <v-main id="concrete-content">
+    <v-main id="concrete-content" class="pt-2">
       <router-view></router-view>
     </v-main>
   </v-app>

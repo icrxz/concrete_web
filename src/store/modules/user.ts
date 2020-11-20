@@ -26,6 +26,23 @@ const actions = {
       throw error.response.data;
     }
   },
+
+  async show ({ commit }, userId) {
+    try {
+      const response = await api.get<User.ApiResponse>(`/users/${userId}`, {
+        headers: {
+          auth: localStorage.jwt,
+        }
+      });
+
+      const user = UserSerializer.deserialize(response.data);
+
+      commit('SET_USER', user);
+      return user;
+    } catch(error) {
+      throw error.response.data;
+    }
+  },
 } as ActionTree<State, unknown>;
 
 const getters = {

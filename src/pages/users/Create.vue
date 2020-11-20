@@ -14,7 +14,14 @@
               <v-text-field v-model="user.email" label="Email" type="email" :rules="rules.email" required />
               <v-text-field v-model="user.phone" label="Telefone" />
               <v-text-field v-model="user.role" label="Cargo" :rules="rules.role" required />
-              <v-text-field v-model="user.profile" label="Perfil" :rules="rules.profile" />
+              <v-select
+                v-model="user.profile"
+                :items="profiles"
+                item-text="label"
+                item-value="role"
+                label="Perfil"
+                :rules="rules.profile"
+              />
 
               <v-text-field
                 v-model="user.password"
@@ -72,6 +79,19 @@ export default Vue.extend({
       showPassword: false,
       showConfirmation: false,
       user: UserFrontState,
+      profiles: [{
+        label: 'Administrador',
+        role: 'admin'
+      },
+      {
+        label: 'Designer',
+        role: 'design',
+      },
+      {
+        label: 'Leitor',
+        role: 'reader'
+      }
+      ]
     };
   },
 

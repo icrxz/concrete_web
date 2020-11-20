@@ -32,6 +32,46 @@ const routes = [
       noHeader: true,
     },
   },
+  {
+    path: '/projetos/novo',
+    name: 'CreateProject',
+    component: () => import('@/pages/projects/Create.vue'),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: '/projetos/:projectId',
+    name: 'ShowProject',
+    component: () => import('@/pages/projects/Show.vue'),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: '/projetos',
+    name: 'IndexProject',
+    component: () => import('@/pages/projects/Index.vue'),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: '/organizacoes/novo',
+    name: 'CreateOrganization',
+    component: () => import('@/pages/organizations/Create.vue'),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: '/organizacoes',
+    name: 'IndexOrganization',
+    component: () => import('@/pages/organizations/Index.vue'),
+    meta: {
+      requiresAuth: true,
+    },
+  },
 ];
 
 const router = new VueRouter({

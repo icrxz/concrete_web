@@ -18,8 +18,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { mapActions } from 'vuex';
-import { Front as FileFront } from '@/models/file.model';
-import * as FileHistory from '@/models/fileHistory.model';
+import { FrontClass as FileFront } from '@/models/file.model';
 import { InitialFrontState } from '@/store/states/fileHistory.state';
 
 export default Vue.extend({

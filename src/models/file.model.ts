@@ -1,5 +1,18 @@
 import * as FileHistory from './fileHistory.model';
 
+export class FrontClass implements Front {
+  id?: string | undefined;
+  name?: string | undefined;
+  fileType!: string;
+  fileHistories!: string[];
+  description?: string | undefined;
+  project!: string;
+  isActive!: boolean;
+  createdById?: string | undefined;
+  lastModifiedById?: string | undefined;
+  createdAt?: string | undefined;
+  updatedAt?: string | undefined;
+}
 export interface Front {
   id?: string;
  

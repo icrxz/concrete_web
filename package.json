@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "eslint": "eslint src/**/*.ts",
-    "postinstall": "yarn build",
+    "lint": "vue-cli-service lint",
+    "postinstall": "if test \"$NODE_ENV\" = \"production\"; then yarn build; fi ",
     "start": "ts-node src/server.ts --optimize_for_size --max_old_space_size=460"
   },
   "dependencies": {

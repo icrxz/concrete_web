@@ -1,5 +1,5 @@
 <template>
-  <v-card class="card">
+  <v-card class="card pa-5" @click="showFile">
     <img :src="fileActive.externalURL" class="titleImage" />
     <v-card-title class="title">
       {{file.name}}
@@ -19,7 +19,6 @@
 import Vue from 'vue';
 import { mapActions } from 'vuex';
 import { Front as FileFront } from '@/models/file.model';
-import * as FileHistory from '@/models/fileHistory.model';
 import { InitialFrontState } from '@/store/states/fileHistory.state';
 
 export default Vue.extend({
@@ -29,6 +28,12 @@ export default Vue.extend({
     return {
       fileActive: InitialFrontState,
     };
+  },
+
+  computed: {
+    projectId(): string {
+      return this.$route.params.projectId;
+    },
   },
 
   props: {
@@ -42,6 +47,15 @@ export default Vue.extend({
     ...mapActions({
       getFileActive: 'files/getFileActive',
     }),
+
+    showFile() {
+      console.log('aqui');
+      
+      this.$router.push({name: 'ShowFile', params: {
+        projectId: this.projectId,
+        fileId: this.file.id,
+      }});
+    },
 
     async fetchItems() {
       this.fileActive = await this.getFileActive(this.file.id);

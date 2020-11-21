@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid class="px-5">
     <v-row>
       <v-col text-left cols=9>
         <v-row>
@@ -19,6 +19,7 @@
               :items-per-page='5'
               sort-by="updatedAt"
               hide-default-footer
+              @click:row="handleProjectRowClick"
             >
               <template v-slot:item.isActive="{item}">
                 <v-simple-checkbox
@@ -40,6 +41,7 @@
               :items='organizationItems'
               sort-by="name"
               hide-default-footer
+              @click:row="handleOrganizationRowClick"
             />
           </v-card>
         </v-row>
@@ -93,6 +95,14 @@ export default Vue.extend({
   },
 
   methods: {
+    handleProjectRowClick(project: Project.Front) {
+      this.$router.push({name: 'ShowProject', params: { projectId: project.id || '' }});
+    },
+
+    handleOrganizationRowClick(organization: Organization.Front) {
+      this.$router.push({name: 'ShowOrganization', params: { organizationId: organization.id || '' }});
+    },
+
     fetchItems() {
       try {
         this.$store.dispatch('projects/index');

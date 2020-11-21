@@ -98,7 +98,30 @@ const actions = {
     } catch(error) {
       throw error.response.data;
     }
-  }
+  },
+
+  async uploadFile ({ commit }, data) {
+    try {
+      console.log(data);
+
+      const headers = {
+        auth: localStorage.jwt,
+        'content-type': 'multipart/form-data',
+      };
+
+      const response = await api.post(
+        `/projects/${data.projectId}/upload-file`,
+        data.formData,
+        { headers }
+      );
+
+      console.log(response);
+
+      return response;
+    } catch(error) {
+      throw error.response.data;
+    }
+  },
 } as ActionTree<State, unknown>;
 
 const getters = {

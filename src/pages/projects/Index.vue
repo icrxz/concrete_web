@@ -22,7 +22,7 @@
                 name: 'ShowProject',
                 params: { projectId: project.id },
               }"
-              style="text-transform: none;"
+              class="projectBtn"
             >
               Visualizar Projeto
             </v-btn>
@@ -67,3 +67,11 @@ export default Vue.extend({
   }
 });
 </script>
+
+<style scoped>
+  .projectBtn {
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: none;
+  }
+</style>

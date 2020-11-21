@@ -20,6 +20,7 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: () => import('@/pages/Home.vue'),
+    exact: true,
     meta: {
       requiresAuth: true,
     },
@@ -28,6 +29,7 @@ const routes = [
     path: '/usuarios/novo',
     name: 'CreateUser',
     component: () => import('@/pages/users/Create.vue'),
+    exact: true,
     meta: {
       noHeader: true,
     },
@@ -36,14 +38,16 @@ const routes = [
     path: '/projetos/novo',
     name: 'CreateProject',
     component: () => import('@/pages/projects/Create.vue'),
+    exact: true,
     meta: {
       requiresAuth: true,
     },
   },
   {
-    path: '/projetos/:projectId',
-    name: 'ShowProject',
-    component: () => import('@/pages/projects/Show.vue'),
+    path: '/projetos/:projectId/novo_arquivo',
+    name: 'CreateFile',
+    component: () => import('@/pages/files/Create.vue'),
+    exact: true,
     meta: {
       requiresAuth: true,
     },
@@ -52,6 +56,24 @@ const routes = [
     path: '/projetos',
     name: 'IndexProject',
     component: () => import('@/pages/projects/Index.vue'),
+    exact: true,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: '/projetos/:projectId/:fileId',
+    name: 'ShowFile',
+    component: () => import('@/pages/files/Show.vue'),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: '/projetos/:projectId',
+    name: 'ShowProject',
+    component: () => import('@/pages/projects/Show.vue'),
+    exact: true,
     meta: {
       requiresAuth: true,
     },

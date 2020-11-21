@@ -1,12 +1,32 @@
 <template>
-  <v-container fluid class="text-left">
-    <h1>Projeto {{project.name}}</h1>
-    <h3 v-if="project.organization">
-      Organização: {{organization.name}}
-    </h3>
-    <h4>
+  <v-container fluid class="text-left px-10 pt-5">
+    <v-row>
+      <h1 style="color: #232323;">
+        Projeto {{project.name}}
+      </h1>
+    </v-row>
+
+    <v-row>
+      <p v-if="project.organization" class="organizationText">
+        Organização: {{organization.name}}
+      </p>
+      <v-spacer />
+      <v-btn
+        class="mr-10"
+        :to="{
+          name: 'CreateFile',
+          params: {
+            projectId: projectId,
+          },
+        }"
+      >
+        <v-icon class="mr-2">mdi-plus-circle-outline</v-icon>
+        <b>arquivo</b>
+      </v-btn>
+    </v-row>
+    <p class="managerText">
       Gerenciado por: {{manager.name}}
-    </h4>
+    </p>
 
     <v-container class="pa-3 mt-3">
       <h2>Arquivos</h2>
@@ -91,3 +111,16 @@ export default Vue.extend({
   }
 });
 </script>
+
+<style scoped>
+  .organizationText {
+    font-size: 20px;
+    margin-top: 10px;
+    color: #545454;
+  }
+
+  .managerText {
+    font-size: 16px;
+    color: #6C6C6C;
+  }
+</style>

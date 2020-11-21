@@ -8,7 +8,7 @@
     "eslint": "eslint src/**/*.ts",
     "lint": "vue-cli-service lint",
     "postinstall": "if test \"$NODE_ENV\" = \"production\"; then yarn build; fi ",
-    "start": "ts-node src/server.ts --optimize_for_size --max_old_space_size=460"
+    "start": "ts-node server.ts --optimize_for_size --max_old_space_size=460"
   },
   "dependencies": {
     "@mdi/font": "^5.3.45",

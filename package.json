@@ -6,8 +6,9 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "eslint": "eslint src/**/*.ts",
-    "postinstall": "yarn build",
-    "start": "ts-node src/server.ts --optimize_for_size --max_old_space_size=460"
+    "lint": "vue-cli-service lint",
+    "postinstall": "if test \"$NODE_ENV\" = \"production\"; then yarn build; fi ",
+    "start": "ts-node server.ts --optimize_for_size --max_old_space_size=460"
   },
   "dependencies": {
     "@mdi/font": "^5.3.45",
@@ -19,7 +20,8 @@
     "express": "^4.17.1",
     "serve-static": "^1.14.1",
     "ts-node": "^9.0.0",
-    "vue": "^2.6.11",
+    "tslib": "^2.0.3",
+    "vue": "^2.6.12",
     "vue-dayjs": "^1.0.2",
     "vue-router": "^3.1.6",
     "vue-the-mask": "^0.11.1",

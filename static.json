@@ -1,7 +1,7 @@
 {
   "root": "build/",
   "routes": {
-      "/**": "index.html"
+      "/**": "main.ts"
   },
   "https_only": true
 }

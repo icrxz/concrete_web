@@ -2,7 +2,9 @@
   <v-app-bar app clipped-left flat dark id="header">
     <v-app-bar-nav-icon @click.stop="handleSidebar"/>
     <v-toolbar-title>
-      <v-img src="@/assets/logo.png" width="5%" />
+      <router-link :to="{name: 'Home'}">
+        <v-img src="@/assets/logo.png" width="5%" />
+      </router-link>
     </v-toolbar-title>
 
     <v-spacer />

@@ -65,12 +65,6 @@ export default class Sidebar extends Vue.extend({
         icon: 'mdi-home', title: 'Home', to: { name: 'Home' }, exact: true,
       },
       {
-        icon: 'mdi-office-building',
-        title: 'Organizações',
-        to: { name: 'IndexOrganization' },
-        exact: false,
-      },
-      {
         icon: 'mdi-folder-home-outline', title: 'Projetos', to: { name: 'IndexProject' }, exact: true,
       },
     ],

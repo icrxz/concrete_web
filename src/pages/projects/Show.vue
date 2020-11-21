@@ -54,11 +54,6 @@ import * as Organization from '@/models/organization.model';
 
 export default Vue.extend({
   name: 'ShowProject',
-  data() {
-     return {
-       
-    };
-  },
 
   components: {
     FileCard: FileCard,
@@ -81,8 +76,8 @@ export default Vue.extend({
       return this.$store.state.users.currentUser;
     },
 
-    files(): Array<File.Front> {
-      return this.$store.state.projects.projectFilesList;
+    files(): Array<File.FrontClass> {
+      return this.$store.state.projects.projectFilesList as Array<File.FrontClass>;
     },
   },
 

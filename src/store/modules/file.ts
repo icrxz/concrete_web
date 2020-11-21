@@ -30,6 +30,13 @@ const mutations = {
   SET_FILE_HISTORY(state, items) {
     state.currentFileHistory = items;
   },
+
+  CHANGE_FILE_ACTIVE(state, item) {
+    state.currentFileHistory[-1].isActive = false;
+    state.currentFileHistory.push(item);
+
+    Object.assign(state.fileHistoryActive, item);
+  }
 } as MutationTree<State>;
 
 const actions = {
@@ -46,8 +53,6 @@ const actions = {
         data.push(FileSerializer.deserialize(element));
       });
 
-      console.log(response);
-
       commit('SET_FILE', data);
       return response;
     } catch (error) {
@@ -55,17 +60,21 @@ const actions = {
     }
   },
 
-  async change ({ commit }, file) {
+  async changeFile ({ commit }, data) {
     try {
-      const data = FileSerializer.serialize(file);
+      const headers = {
+        auth: localStorage.jwt,
+      };
 
-      const response = await api.put(`/files/${file.id}`, data, {
-        headers: {
-          auth: localStorage.jwt,
-        }
-      });
+      const response = await api.put(
+        `/files/${data.fileId}/change`,
+        data.formData, 
+        { headers },
+      );
 
-      return response;
+      const changedFile = FileSerializer.deserialize(response.data);
+
+      return changedFile;
     } catch(error) {
       throw error.response.data;
     }
@@ -78,8 +87,6 @@ const actions = {
           auth: localStorage.jwt,
         }
       });
-
-      console.log(response);
 
       return response;
     } catch(error) {
@@ -112,8 +119,6 @@ const actions = {
         }
       });
 
-      console.log(response);
-
       const fileActive = FileHistorySerializer.deserialize(response.data[0]);
 
       commit('SET_FILE_ACTIVE', fileActive);
@@ -131,8 +136,6 @@ const actions = {
           auth: localStorage.jwt,
         }
       });
-
-      console.log(response);
 
       response.data.forEach((element) => {
         data.push(FileHistorySerializer.deserialize(element));

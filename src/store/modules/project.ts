@@ -102,8 +102,6 @@ const actions = {
 
   async uploadFile ({ commit }, data) {
     try {
-      console.log(data);
-
       const headers = {
         auth: localStorage.jwt,
         'content-type': 'multipart/form-data',
@@ -114,8 +112,6 @@ const actions = {
         data.formData,
         { headers }
       );
-
-      console.log(response);
 
       return response;
     } catch(error) {

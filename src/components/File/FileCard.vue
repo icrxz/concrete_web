@@ -9,7 +9,7 @@
       Ultima atualização em {{file.updatedAt}}
     </v-card-subtitle>
 
-    <v-card-text>
+    <v-card-text v-if="file.description">
       Descrição: {{file.description}}
     </v-card-text>
   </v-card>
@@ -49,8 +49,6 @@ export default Vue.extend({
     }),
 
     showFile() {
-      console.log('aqui');
-
       this.$router.push({name: 'ShowFile', params: {
         projectId: this.projectId,
         fileId: this.file.id || '',

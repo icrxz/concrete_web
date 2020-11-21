@@ -1,28 +1,44 @@
 <template>
   <v-container fluid class="text-left px-10 pt-5">
+    <v-dialog
+      v-model="dialog"
+      persistent
+      max-width="50%"
+    >
+      <FileChanger
+        @save="handleSubmit"
+        @cancel="dialog = false"
+      />
+    </v-dialog>
+    
     <v-card class="pa-4">
       <v-row>
         <v-col cols="3">
-          <v-img :src="fileActive.externalURL" />
+          <v-img
+            :src="fileActive.externalURL"
+            style="border: 3px solid #6C6C6C;"
+          />
         </v-col>
 
         <v-col cols="9">
           <v-container class="pa-2">
-            <span>Título: {{file.name}}</span>
-            <br />
-            <span>Descrição: {{file.description}}</span>
-            <br />
-            <span>Extensão do arquivo: {{file.fileType}}</span>
-            <br />
-            <span>Número da versão: {{fileActive.versionNumber}}</span>
-            <br />
-            <a :href="fileActive.externalURL">Download do arquivo</a> 
-            <br />
-            <span>Alterado pela ultima vez por {{lastUser.name}} no dia {{fileActive.updatedAt}}</span>
-            <br />
-            <br />
-            <span>Historico de arquivos</span>
+            <div class="infoForm">
+              <div class="mb-1"><b>Título:</b> {{file.name || '-'}}</div>
+              <div class="mb-1"><b>Descrição:</b> {{file.description || '-'}}</div>
+              <div class="mb-1"><b>Extensão do arquivo:</b> {{file.fileType || '-'}}</div>
+              <div class="mb-1"><b>Número da versão:</b> {{fileActive.versionNumber || '-'}}</div>
+              <div class="mb-1">
+                <a
+                  :href="fileActive.externalURL"
+                  download="testeImage"
+                  title="Image"
+                  target="_blank"
+                >Download do arquivo</a> 
+              </div>
+              <div class="mb-1">Alterado pela ultima vez por {{lastUser.name || '-'}} no dia {{fileActive.updatedAt || '-'}}</div>
+            </div>
 
+            <div class="mt-3" style="color: #000; font-size: 22px; font-weight: 600;">Historico de arquivos</div>
             <v-data-table
               :headers='historyHeaders'
               :items='fileHistory'
@@ -37,7 +53,7 @@
               </template>
 
               <template v-slot:item.externalURL="{item}">
-                <a :href="item.externalURL">Visualizar versão {{item.versionNumber}}</a>
+                <a :href="item.externalURL" target="_blank">Visualizar versão {{item.versionNumber}}</a>
               </template>
             </v-data-table>
           </v-container>
@@ -47,7 +63,7 @@
       <v-card-actions>
         <div class="flex-grow-1"></div>
         <v-btn color="warning" @click="handleCancel" class="mr-4">Voltar</v-btn>
-        <v-btn color="success" @click="handleSubmit" class="mr-4">Alterar Arquivo</v-btn>
+        <v-btn color="success" @click="dialog = true" class="mr-4">Alterar Arquivo</v-btn>
       </v-card-actions>
     </v-card>
   </v-container>
@@ -56,6 +72,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { mapActions } from 'vuex';
+import FileChanger from '@/components/File/FileChanger.vue';
 import * as Project from '@/models/project.model';
 import * as User from '@/models/user.model';
 import * as File from '@/models/file.model';
@@ -70,7 +87,12 @@ export default Vue.extend({
         { text: 'Ativo', value: 'isActive', sortable: false },
         { text: 'Atualizado em', value: 'updatedAt', sortable: false },
       ],
+      dialog: false,
     };
+  },
+
+  components: {
+    FileChanger: FileChanger,
   },
 
   computed: {
@@ -106,6 +128,7 @@ export default Vue.extend({
   methods: {
     ...mapActions({
       showFile: 'files/show',
+      changeFile: 'files/changeFile',
       showUser: 'users/show',
       showProject: 'projects/show',
       getFileHistory: 'files/getFileHistory',
@@ -114,6 +137,17 @@ export default Vue.extend({
 
     handleCancel() {
       this.$router.push({ name: 'ShowProject', params: {projectId: this.projectId } });
+    },
+
+    async handleSubmit(fileData: FormData) {
+      this.dialog = false;
+      
+      try {
+        await this.changeFile({ fileId: this.file.id, formData: fileData });
+        this.fetchItems();
+      } catch(error) {
+        console.log(error);
+      }
     },
 
     async fetchItems() {
@@ -136,13 +170,22 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-  .organizationText {
+  a {
+    text-decoration: none;
+  }
+
+  .infoForm {
+    font-size: 16px;
+    color: #545454;
+  }
+
+  .title {
     font-size: 20px;
     margin-top: 10px;
     color: #545454;
   }
 
-  .managerText {
+  .infoText {
     font-size: 16px;
     color: #6C6C6C;
   }

@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "eslint": "eslint src/**/*.ts",
     "postinstall": "yarn build",
-    "start": "ts-node src/server.ts --optimize_for_size --max_old_space_size=460"
+    "start": "ts-node src/main.ts --optimize_for_size --max_old_space_size=460"
   },
   "dependencies": {
     "@mdi/font": "^5.3.45",

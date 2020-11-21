@@ -18,7 +18,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { mapActions } from 'vuex';
-import { Front as FileFront } from '@/models/file.model';
+import { FrontClass as FileFront } from '@/models/file.model';
 import { InitialFrontState } from '@/store/states/fileHistory.state';
 
 export default Vue.extend({
@@ -50,10 +50,10 @@ export default Vue.extend({
 
     showFile() {
       console.log('aqui');
-      
+
       this.$router.push({name: 'ShowFile', params: {
         projectId: this.projectId,
-        fileId: this.file.id,
+        fileId: this.file.id || '',
       }});
     },
 

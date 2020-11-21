@@ -4,11 +4,11 @@ import serveStatic from 'serve-static';
 
 import Vue from 'vue';
 import VueTheMask from 'vue-the-mask';
-import App from './App.vue';
-import router from './router/routes';
-import store from './store';
-import axios from './plugins/axios';
-import vuetify from './plugins/vuetify';
+import App from '.src/App.vue';
+import router from '.src/router/routes';
+import store from '.src/store';
+import axios from '.src/plugins/axios';
+import vuetify from '.src/plugins/vuetify';
 
 
 const app = express();

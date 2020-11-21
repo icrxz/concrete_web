@@ -28,7 +28,7 @@
               v-model="project.organization"
               :items="organizations"
               item-text="name"
-              item-value="_id"
+              item-value="id"
               label="Organização"
             />
           </v-form>

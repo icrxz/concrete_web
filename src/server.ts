@@ -9,3 +9,7 @@ const port = process.env.PORT || 8080;
 
 app.listen(port);
 console.log(`app is listening on port: ${port}`);
+
+app.get('/', function (req, res) {
+    res.render(path.join(__dirname + '/src/app.vue'));
+});

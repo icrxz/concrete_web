@@ -8,7 +8,8 @@
     "eslint": "eslint src/**/*.ts",
     "lint": "vue-cli-service lint",
     "postinstall": "if test \"$NODE_ENV\" = \"production\"; then yarn build; fi ",
-    "start": "ts-node server.ts --optimize_for_size --max_old_space_size=460"
+    "start": "ts-node server.ts --optimize_for_size --max_old_space_size=460",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "@mdi/font": "^5.3.45",
@@ -39,7 +40,9 @@
     "@vue/cli-service": "~4.5.0",
     "@vue/eslint-config-typescript": "^5.0.2",
     "babel-eslint": "^10.1.0",
+    "cypress": "^5.6.0",
     "eslint": "^6.7.2",
+    "eslint-plugin-cypress": "^2.11.2",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-vue": "^6.2.2",
     "sass": "^1.19.0",

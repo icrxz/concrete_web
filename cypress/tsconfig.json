@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "baseUrl": "../node_modules",
+    "target": "esnext",
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.iterable",
+      "scripthost",
+    ],
+    "types": ["cypress"]
+  },
+  "include": [
+    "**/*.ts"
+  ]
+}

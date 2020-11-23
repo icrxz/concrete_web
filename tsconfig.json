@@ -18,8 +18,9 @@
       "./node_modules/vuetify/types"
     ],
     "types": [
-      "webpack-env",
-      "vuetify"
+      "cypress",
+      "vuetify",
+      "webpack-env"
     ],
     "paths": {
       "@/*": [

@@ -3,15 +3,19 @@ module.exports = {
 
   env: {
     node: true,
+    'cypress/globals': true,
   },
 
   extends: [
     'plugin:vue/essential',
     'eslint:recommended',
     '@vue/typescript/recommended',
+    'plugin:cypress/recommended',
   ],
 
-  plugins: [],
+  plugins: [
+    'cypress',
+  ],
 
   parserOptions: {
     parser: '@typescript-eslint/parser',
